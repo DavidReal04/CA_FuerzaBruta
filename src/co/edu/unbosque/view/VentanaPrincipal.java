@@ -11,9 +11,13 @@ import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
+import javax.swing.text.Highlighter;
 
 public class VentanaPrincipal extends JFrame{
-	
+
+	private static final long serialVersionUID = 1L;
 	private PanelPrincipal principal;
 	private JMenuBar menu;
 	private JMenu archivo;
@@ -21,11 +25,12 @@ public class VentanaPrincipal extends JFrame{
 	private JFileChooser fileChooser;
 	private JTextPane texto;
 	private JScrollPane scrollPane;
+	private DefaultHighlightPainter highlight;
 	
 	public VentanaPrincipal() {
 		
 		setTitle("Algoritmos FB");
-		setSize(600, 500);
+		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.lightGray);
@@ -46,6 +51,7 @@ public class VentanaPrincipal extends JFrame{
 		getContentPane().add(principal);
 		
 		texto = new JTextPane();
+		texto.setText("Por Favor, cargue un archivo .txt");
 		texto.setEditable(false);
 		add(texto);	
 		
@@ -67,8 +73,18 @@ public class VentanaPrincipal extends JFrame{
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setFileFilter(new FileNameExtensionFilter("Archivos de texto (.txt)", "txt"));
 		
+		highlight = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
+		
 	}
 	
+	public DefaultHighlightPainter getHighlight() {
+		return highlight;
+	}
+
+	public void setHighlight(DefaultHighlightPainter highlight) {
+		this.highlight = highlight;
+	}
+
 	public JTextPane getTexto() {
 		return texto;
 	}
