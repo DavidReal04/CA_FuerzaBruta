@@ -12,17 +12,20 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 
 import co.edu.unbosque.model.Boyer_Moore;
+import co.edu.unbosque.model.Knuth_Morris_Pratt;
 import co.edu.unbosque.view.VentanaPrincipal;
 
 public class Controller implements ActionListener{
 	
 	private VentanaPrincipal vPrincipal;
 	private Boyer_Moore bm;
+	private Knuth_Morris_Pratt kmp;
 	private Scanner leer;
 
 	public Controller() {
 		vPrincipal = new VentanaPrincipal();
 		bm = new Boyer_Moore();
+		kmp = new Knuth_Morris_Pratt();
 		asignarOyentes();
 	}
 
@@ -42,10 +45,11 @@ public class Controller implements ActionListener{
 			File file = vPrincipal.getFileChooser().getSelectedFile();
 			try {
 				if(file!=null){
-					leer = new Scanner(file);
 					vPrincipal.getTexto().setText("");
+					vPrincipal.getPrincipal().getMostrar_cant().setText("");
+					leer = new Scanner(file);
 					while(leer.hasNextLine()) {
-						vPrincipal.getTexto().setText(vPrincipal.getTexto().getText() + new String(leer.nextLine().getBytes(),"utf8") +"\n");
+						vPrincipal.getTexto().setText(vPrincipal.getTexto().getText().concat(new String(leer.nextLine().getBytes(),"utf8") +"\n"));
 					}
 					leer.close();
 					vPrincipal.getPrincipal().estadoElementos(true);
@@ -56,14 +60,32 @@ public class Controller implements ActionListener{
 			} catch (UnsupportedEncodingException e2) {}
 			
 		}else if(e.getActionCommand().equals("KMP")) {
+			vPrincipal.getTexto().setCaretPosition(0);
+			vPrincipal.getTexto().getHighlighter().removeAllHighlights();
+			kmp.getText_pos().clear();
+			if(vPrincipal.getPrincipal().getTexto().getText().equals("")) {
+				vPrincipal.getPrincipal().getMostrar_cant().setText("No ingresó ninguna palabra");
+			}else {
+				kmp.busquedaKMP(vPrincipal.getTexto().getText().toCharArray(), vPrincipal.getPrincipal().getTexto().getText().toCharArray());
+				vPrincipal.getPrincipal().getMostrar_cant().setText("El texto aparece "+kmp.getText_pos().size()+" veces");
+				vPrincipal.getPrincipal().getMostrar_cant().setVisible(true);
+				resaltar(kmp.getText_pos(), vPrincipal.getPrincipal().getTexto().getText().length());
+				vPrincipal.getTexto().setCaretPosition(kmp.getText_pos().get(0));
+			}
 			
 		}else if(e.getActionCommand().equals("BM")) {
+			vPrincipal.getTexto().setCaretPosition(0);
 			vPrincipal.getTexto().getHighlighter().removeAllHighlights();
 			bm.getText_pos().clear();
-			bm.buscar(vPrincipal.getTexto().getText().toCharArray(), vPrincipal.getPrincipal().getTexto().getText().toCharArray());
-			vPrincipal.getPrincipal().getMostrar_cant().setText("El texto aparece "+bm.getText_pos().size()+" veces");
-			vPrincipal.getPrincipal().getMostrar_cant().setVisible(true);
-			resaltar(bm.getText_pos(), vPrincipal.getPrincipal().getTexto().getText().length());
+			if(vPrincipal.getPrincipal().getTexto().getText().equals("")) {	
+				vPrincipal.getPrincipal().getMostrar_cant().setText("No ingresó ninguna palabra");
+			}else {
+				bm.buscar(vPrincipal.getTexto().getText().toCharArray(), vPrincipal.getPrincipal().getTexto().getText().toCharArray());
+				vPrincipal.getPrincipal().getMostrar_cant().setText("El texto aparece "+bm.getText_pos().size()+" veces");
+				vPrincipal.getPrincipal().getMostrar_cant().setVisible(true);
+				resaltar(bm.getText_pos(), vPrincipal.getPrincipal().getTexto().getText().length());
+				vPrincipal.getTexto().setCaretPosition(bm.getText_pos().get(0));
+			}
 		}
 	} 
 	

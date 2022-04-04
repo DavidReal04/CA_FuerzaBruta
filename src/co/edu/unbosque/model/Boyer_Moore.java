@@ -9,7 +9,7 @@ public class Boyer_Moore {
 	
 	public Boyer_Moore() {
 		text_pos = new ArrayList<>();
-		NUM_CARACTERES=256;
+		NUM_CARACTERES=1824;
 	}
 	
 	public void buscar(char[] texto, char[] patron) {
