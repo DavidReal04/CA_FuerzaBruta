@@ -2,9 +2,21 @@ package co.edu.unbosque.model;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Boyer_Moore, consta del método constructor, del método buscar y del método reglaCaracterMalo
+ * <p>Implementación del algorimo Boyer Moore 
+ * @author David Real
+ * @author Diego Nuñez
+ */
 public class Boyer_Moore {
 	
+	/**
+	 * ArrayList con Objetos de tipo Integer
+	 */
 	private ArrayList<Integer> text_pos;
+	/**
+	 * Objeto de tipo int
+	 */
 	private final int NUM_CARACTERES;
 	
 	public Boyer_Moore() {
@@ -12,6 +24,11 @@ public class Boyer_Moore {
 		NUM_CARACTERES=1824;
 	}
 	
+	/**
+	 * Método buscar de la clase Boyer_Moore
+	 * @param texto Arreglo de caracteres que contiene el texto donde se hace la busqueda
+	 * @param patron Arreglo de caracteres que contiene el texto a buscar
+	 */
 	public void buscar(char[] texto, char[] patron) {
 		
 		int len_texto = texto.length;
@@ -38,7 +55,12 @@ public class Boyer_Moore {
 			}
 		}		
 	}
-	
+	/**
+	 * Método reglaCaracterMalo de la clase Boyer_Moore
+	 * @param cadena Arreglo de caracteres que contiene el texto a buscar
+	 * @param tam Número entero que indica el tamaño de la cadena
+	 * @param caracterMalo Arreglo de numeros enteros
+	 */
 	public void reglaCaracterMalo(char[] cadena, int tam, int[] caracterMalo) {
 		
 		for (int i = 0; i < NUM_CARACTERES; i++) {
@@ -51,6 +73,13 @@ public class Boyer_Moore {
 		}	
 	}
 	
+	/**
+	 * Método getMax de la clase Boyer_Moore
+	 * @param num1 Numero entero
+	 * @param num2 Numero entero
+	 * @return Mayor de los números ingresados
+	 */
+	
 	public int getMax(int num1, int num2) {
 		if(num1>num2) {
 			return num1;
@@ -58,6 +87,7 @@ public class Boyer_Moore {
 		return num2;
 	}
 
+	//Getter-Setters
 	public ArrayList<Integer> getText_pos() {
 		return text_pos;
 	}

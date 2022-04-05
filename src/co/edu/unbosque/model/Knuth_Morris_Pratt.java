@@ -1,15 +1,30 @@
 package co.edu.unbosque.model;
 
 import java.util.ArrayList;
-
+/**
+ * Clase Knuth_Morris_Pratt, consta del método constructor y método busquedaKMP
+ * <p>Implementación del algorimo Knuth Morris Pratt 
+ * @author David Real
+ * @author Diego Nuñez
+ */
 public class Knuth_Morris_Pratt {
 	
+	/**
+	 * ArrayList con Objetos de tipo Integer
+	 */
 	private ArrayList<Integer> text_pos;
 	
+	/**
+	 * Método constructor de la clase Knuth_Morris_Pratt
+	 */
 	public Knuth_Morris_Pratt() {
 		text_pos = new ArrayList<>();
 	}
-	
+	/**
+	 * Método busquedaKMP de la clase Knuth_Morris_Pratt
+	 * @param text Arreglo de caracteres que contiene el texto donde se hace la busqueda
+	 * @param pat Arreglo de caracteres que contiene el texto a buscar
+	 */
 	public void busquedaKMP(char[] text, char[] pat){
         if (pat == null || pat.length == 0){
             text_pos.add(0);
@@ -42,10 +57,18 @@ public class Knuth_Morris_Pratt {
         }
     }
 
+	/**
+	 * Método getText_pos de la clase Knuth_Morris_Pratt
+	 * @return Objeto text_pos de la clase Knuth_Morris_Pratt
+	 */
 	public ArrayList<Integer> getText_pos() {
 		return text_pos;
 	}
-
+	
+	/**
+	 * Método setText_pos de la clase Knuth_Morris_Pratt
+	 * @param text_pos ArrayList con objetos de tipo Integer
+	 */
 	public void setText_pos(ArrayList<Integer> text_pos) {
 		this.text_pos = text_pos;
 	}

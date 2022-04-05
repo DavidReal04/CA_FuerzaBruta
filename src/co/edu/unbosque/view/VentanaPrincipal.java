@@ -14,19 +14,53 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.DefaultHighlighter.DefaultHighlightPainter;
 import javax.swing.text.Highlighter;
-
+/**
+ * Clase VentanaPrincipal, consta del método constructor y de el método inicializarComponentes
+ * @author David Real
+ * @author Diego Nuñez
+ */
 public class VentanaPrincipal extends JFrame{
 
+	/**
+	 *Serial de la clase VentanaPrincipal 
+	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * Objeto de PanelPrincipal que permite acceder a sus atributos y métodos
+	 */
 	private PanelPrincipal principal;
+	/**
+	 * Objeto de JMenuBar
+	 */
 	private JMenuBar menu;
+	/**
+	 * Objeto de JMenu
+	 */
 	private JMenu archivo;
-	private JMenuItem abrirFile; 
+	/**
+	 * Objeto de JMenuItem
+	 */
+	private JMenuItem abrirFile;
+	/**
+	 * Objeto de JFileChooser
+	 */
 	private JFileChooser fileChooser;
+	/**
+	 * Objeto de JTextPane
+	 */
 	private JTextPane texto;
+	/**
+	 * Objeto de JScrollPane
+	 */
 	private JScrollPane scrollPane;
+	/**
+	 * Objeto de DefaultHighlightPainter 
+	 */
 	private DefaultHighlightPainter highlight;
 	
+	/**
+	 * Método Constructor de la clase VentanaPrincipal
+	 */
 	public VentanaPrincipal() {
 		
 		setTitle("Algoritmos FB");
@@ -42,6 +76,9 @@ public class VentanaPrincipal extends JFrame{
 		setVisible(true);
 	}
 
+	/**
+	 * Método inicializarComponentes de la clase VentanaPrincipal
+	 */
 	private void inicializarComponentes() {
 	// TODO Auto-generated method stub
 		
@@ -76,6 +113,8 @@ public class VentanaPrincipal extends JFrame{
 		highlight = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
 		
 	}
+	
+	//Getters-Setters
 	
 	public DefaultHighlightPainter getHighlight() {
 		return highlight;
